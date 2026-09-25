@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   let fixture: ComponentFixture<AppComponent>;
+  let host: HTMLElement;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -15,14 +16,14 @@ describe('AppComponent', () => {
 
     fixture = TestBed.createComponent(AppComponent);
     await fixture.whenStable();
+    host = fixture.nativeElement as HTMLElement;
   });
 
-  it('creates the component', () => {
-    expect(fixture.componentInstance).toBeInstanceOf(AppComponent);
+  it('renders the application header', () => {
+    expect(host.querySelector('app-header')).not.toBeNull();
   });
 
-  it('renders a router outlet', () => {
-    const host = fixture.nativeElement as HTMLElement;
-    expect(host.querySelector('router-outlet')).not.toBeNull();
+  it('renders routed content inside the main landmark', () => {
+    expect(host.querySelector('main router-outlet')).not.toBeNull();
   });
 });

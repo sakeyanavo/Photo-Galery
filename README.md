@@ -1,6 +1,25 @@
-# GalleryTemplate
+# Photo Library
+
+A photo library built with Angular 22 (standalone components, zoneless change detection, signals),
+Angular Material and SCSS. It shows a random photo stream with infinite scrolling, lets you keep
+favorites that survive a refresh, and opens each favorite in a fullscreen details view.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.8 and updated to Angular 22.2.0.
+It requires Node.js 22 or newer.
+
+## Architecture
+
+```text
+src/app/
+  app.config.ts          application providers (router, zoneless CD, Material icon setup)
+  app.routes.ts          lazy-loaded feature routes
+  core/layout/header/    application shell header with navigation
+  shared/models/         domain models shared across features
+  features/
+    photos/              "/"            random photo stream
+    favorites/           "/favorites"   persisted favorites
+    photo-details/       "/photos/:id"  fullscreen photo view
+```
 
 ## Development server
 
