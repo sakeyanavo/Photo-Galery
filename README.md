@@ -1,6 +1,6 @@
 # GalleryTemplate
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.8 and updated to Angular 21.2.24.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.1.8 and updated to Angular 22.2.0.
 
 ## Development server
 
