@@ -1,41 +1,39 @@
 @use '@angular/material' as mat;
+@use './styles/theme-colors' as brand;
 
 html {
-  color-scheme: light dark;
+  color-scheme: light;
 
   @include mat.theme((
     color: (
-      primary: mat.$violet-palette,
-      tertiary: mat.$rose-palette,
+      primary: brand.$primary-palette,
+      tertiary: brand.$tertiary-palette,
     ),
-    typography: (
-      plain-family: ('Inter', system-ui, sans-serif),
-      brand-family: ('Inter', system-ui, sans-serif),
-    ),
+    typography: 'Plus Jakarta Sans',
     density: 0,
   ));
 
-  --app-page-gutter: clamp(1rem, 4vw, 2.5rem);
-  --app-content-max-width: 1440px;
+  // Material picks a darker tone for "primary"; use the creamy brand peach instead.
+  @include mat.theme-overrides((
+    primary: #f4835f,
+    on-primary: #fff,
+    primary-container: #ffe9dc,
+  ));
+
+  --app-radius: 16px;
+  --app-gutter: clamp(1rem, 4vw, 2.5rem);
 }
 
-*,
-*::before,
-*::after {
+* {
   box-sizing: border-box;
 }
 
-html,
 body {
-  height: 100%;
   margin: 0;
-}
-
-body {
-  background: var(--mat-sys-surface);
+  min-height: 100dvh;
+  background: #fffaf2;
   color: var(--mat-sys-on-surface);
-  font: var(--mat-sys-body-medium);
-  -webkit-font-smoothing: antialiased;
+  font: var(--mat-sys-body-large);
 }
 
 img {
@@ -44,17 +42,16 @@ img {
 }
 
 .page {
-  width: 100%;
-  max-width: var(--app-content-max-width);
+  max-width: 1440px;
   margin: 0 auto;
-  padding: var(--app-page-gutter);
+  padding: var(--app-gutter);
 }
 
 .page__title {
-  margin: 0 0 0.5rem;
-  font: var(--mat-sys-headline-medium);
-  font-weight: 600;
-  letter-spacing: -0.02em;
+  margin: 0 0 0.25rem;
+  font: var(--mat-sys-headline-large);
+  font-weight: 700;
+  color: var(--mat-sys-primary);
 }
 
 .page__hint {
@@ -62,10 +59,6 @@ img {
   color: var(--mat-sys-on-surface-variant);
 }
 
-.material-symbols-outlined {
-  font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-
-  &.is-filled {
-    font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-  }
+.is-filled {
+  font-variation-settings: 'FILL' 1;
 }

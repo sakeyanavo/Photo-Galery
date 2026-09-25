@@ -1,13 +1,12 @@
 <mat-toolbar class="header">
   <a class="header__brand" routerLink="/" aria-label="Photo Library home">
-    <mat-icon class="header__brand-icon" aria-hidden="true">photo_camera</mat-icon>
+    <mat-icon class="is-filled" aria-hidden="true">photo_camera</mat-icon>
     <span class="header__brand-text">Photo Library</span>
   </a>
 
   <nav class="header__nav" aria-label="Main">
     @for (item of navItems; track item.path) {
       <a
-        mat-button
         class="header__link"
         [routerLink]="item.path"
         [attr.aria-label]="item.label"

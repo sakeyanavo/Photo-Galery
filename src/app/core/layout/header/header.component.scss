@@ -6,39 +6,44 @@
 
 .header {
   gap: 1rem;
-  border-bottom: 1px solid var(--mat-sys-outline-variant);
-  background: color-mix(in srgb, var(--mat-sys-surface) 88%, transparent);
-  backdrop-filter: blur(12px);
+  padding-inline: var(--app-gutter);
+  background: #fff;
+  border-bottom: 3px solid var(--mat-sys-primary);
 }
 
 .header__brand {
-  display: inline-flex;
+  display: flex;
   align-items: center;
   gap: 0.5rem;
-  color: var(--mat-sys-on-surface);
-  font: var(--mat-sys-title-large);
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  text-decoration: none;
-}
-
-.header__brand-icon {
   color: var(--mat-sys-primary);
+  font: var(--mat-sys-title-large);
+  font-weight: 700;
+  text-decoration: none;
 }
 
 .header__nav {
   display: flex;
-  gap: 0.25rem;
+  gap: 0.5rem;
   margin-left: auto;
 }
 
 .header__link {
-  color: var(--mat-sys-on-surface-variant);
-  transition: background-color 150ms ease, color 150ms ease;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.5rem 1rem;
+  border-radius: 999px;
+  color: var(--mat-sys-on-surface);
+  font: var(--mat-sys-label-large);
+  text-decoration: none;
+
+  &:hover {
+    background: var(--mat-sys-primary-container);
+  }
 
   &.active {
-    color: var(--mat-sys-primary);
-    background: var(--mat-sys-secondary-container);
+    background: var(--mat-sys-primary);
+    color: #fff;
   }
 }
 
@@ -46,9 +51,5 @@
   .header__brand-text,
   .header__link-label {
     display: none;
-  }
-
-  .header__link {
-    min-width: 0;
   }
 }
