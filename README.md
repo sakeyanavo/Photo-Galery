@@ -14,9 +14,13 @@ src/app/
   app.config.ts          application providers (router, zoneless CD, Material icon setup)
   app.routes.ts          lazy-loaded feature routes
   core/layout/header/    application shell header with navigation
+  core/favorites/        FavoritesStore: signal-based single source of truth for favorites
+  core/storage/          LocalStorageService: guarded JSON access to localStorage
   shared/models/         domain models shared across features
+  shared/components/     reusable presentational components (photo card)
+  shared/directives/     reusable directives (infinite scroll via IntersectionObserver)
   features/
-    photos/              "/"            random photo stream
+    photos/              "/"            random photo stream; PhotoService simulates the API
     favorites/           "/favorites"   persisted favorites
     photo-details/       "/photos/:id"  fullscreen photo view
 ```

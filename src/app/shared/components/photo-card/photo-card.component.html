@@ -1,0 +1,45 @@
+<article class="card" [class.card--loaded]="status() === 'loaded'" [class.card--selectable]="selectable()">
+  @if (selectable()) {
+    <button type="button" class="card__body" [attr.aria-label]="selectLabel()" (click)="select()">
+      <ng-container [ngTemplateOutlet]="media" />
+    </button>
+  } @else {
+    <div class="card__body">
+      <ng-container [ngTemplateOutlet]="media" />
+    </div>
+  }
+
+  <button
+    type="button"
+    class="card__fav"
+    [class.card__fav--active]="favorite()"
+    [attr.aria-pressed]="favorite()"
+    [attr.aria-label]="favoriteButtonLabel()"
+    (click)="toggleFavorite()">
+    <mat-icon [class.is-filled]="favorite()" aria-hidden="true">favorite</mat-icon>
+  </button>
+</article>
+
+<ng-template #media>
+  @if (status() === 'error') {
+    <div class="card__fallback">
+      <mat-icon aria-hidden="true">broken_image</mat-icon>
+      <span>Image unavailable</span>
+    </div>
+  } @else {
+    <img
+      class="card__img"
+      [src]="photo().url"
+      [alt]="photo().alt"
+      [width]="photo().width"
+      [height]="photo().height"
+      loading="lazy"
+      decoding="async"
+      (load)="onLoad()"
+      (error)="onError()" />
+  }
+
+  @if (status() === 'loading') {
+    <div class="card__skeleton" aria-hidden="true"></div>
+  }
+</ng-template>
