@@ -17,7 +17,7 @@ describe('HeaderComponent', () => {
     await fixture.whenStable();
     const host = fixture.nativeElement as HTMLElement;
 
-    expect(host.querySelector('.header__link[href="/"]')?.textContent).toContain('Photos');
-    expect(host.querySelector('.header__link[href="/favorites"]')?.textContent).toContain('Favorites');
+    expect(host.querySelector('nav a[href="/"]')?.textContent).toContain('Photos');
+    expect(host.querySelector('nav a[href="/favorites"]')?.textContent).toContain('Favorites');
   });
 });

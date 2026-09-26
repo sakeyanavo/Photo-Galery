@@ -1,0 +1,6 @@
+/*
+ * Tailwind v4 is compiled by the @tailwindcss/postcss plugin configured in .postcssrc.json.
+ * Angular's build only runs Tailwind through PostCSS; without the plugin this import is
+ * inlined as raw source and no utility classes are generated.
+ */
+@import "tailwindcss";

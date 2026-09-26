@@ -8,7 +8,6 @@ import { FavoritesService } from '../../../../core/services/favorites/favorites.
   selector: 'app-photo-details-page',
   imports: [MatButtonModule, MatIconModule, RouterLink],
   templateUrl: './photo-details-page.component.html',
-  styleUrl: './photo-details-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PhotoDetailsPageComponent {

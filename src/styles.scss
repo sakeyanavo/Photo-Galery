@@ -10,24 +10,7 @@ html {
 }
 
 body {
-  margin: 0;
   background: var(--mat-sys-surface);
   color: var(--mat-sys-on-surface);
   font: var(--mat-sys-body-large);
-}
-
-.page {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 1.5rem;
-}
-
-.spinner {
-  margin: 2rem auto;
-}
-
-.photo-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 1rem;
 }

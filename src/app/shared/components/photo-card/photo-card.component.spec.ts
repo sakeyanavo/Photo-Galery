@@ -26,14 +26,14 @@ describe('PhotoCardComponent', () => {
     const host = fixture.nativeElement as HTMLElement;
 
     expect(host.querySelector('img')?.src).toBe(photo.url);
-    host.querySelector<HTMLButtonElement>('.card__photo')!.click();
+    host.querySelector<HTMLButtonElement>('img')!.click();
     expect(selected).toEqual([photo]);
   });
 
   it('shows the favorite state and emits when the heart is clicked', async () => {
     const toggled: Photo[] = [];
     fixture.componentInstance.favoriteToggled.subscribe(p => toggled.push(p));
-    const heart = () => (fixture.nativeElement as HTMLElement).querySelector<HTMLButtonElement>('.card__heart')!;
+    const heart = () => (fixture.nativeElement as HTMLElement).querySelector<HTMLButtonElement>('[aria-label]')!;
 
     expect(heart().textContent).toContain('favorite_border');
     fixture.componentRef.setInput('favorite', true);
