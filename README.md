@@ -83,7 +83,7 @@ About 10 hours in total over two days: roughly 5 hours for the project setup, up
 and the first working version, and roughly 5 hours for simplifying the code, restructuring the
 folders, switching the styling to Tailwind and updating the tests.
 
+## Screenshots
 
-<img width="1722" height="967" alt="Screenshot 2026-09-26 at 18 10 08" src="https://github.com/user-attachments/assets/16d7f834-bd23-4e65-a54d-d5c678f6df6a" />
-<img width="1722" height="967" alt="Screenshot 2026-09-26 at 18 10 32" src="https://github.com/user-attachments/assets/7ac98dc2-dd6b-45ff-9e3e-f280caff0fb3" />
-<img width="1722" height="967" alt="Screenshot 2026-09-26 at 18 10 43" src="https://github.com/user-attachments/assets/c7e29da3-8845-4cf2-bcc4-9fccf6edfea1" />
+Screenshots of the photos, favorites and details pages are in
+[`src/assets/screenshots`](src/assets/screenshots).
