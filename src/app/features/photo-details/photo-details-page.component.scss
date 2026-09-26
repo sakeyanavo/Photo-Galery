@@ -1,3 +1,130 @@
 :host {
-  display: block;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+}
+
+.details {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  background: #1f1512;
+  color: #fff;
+}
+
+.details__bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem var(--app-gutter);
+  background: rgb(255 255 255 / 0.06);
+}
+
+.details__back {
+  color: #fff;
+}
+
+.details__title {
+  flex: 1;
+  min-width: 0;
+  margin: 0;
+  overflow: hidden;
+  font: var(--mat-sys-title-medium);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.details__stage {
+  display: grid;
+  flex: 1;
+  place-items: center;
+  margin: 0;
+  padding: var(--app-gutter);
+}
+
+.details__img {
+  width: auto;
+  max-width: 100%;
+  max-height: calc(100dvh - 64px - 64px - 2 * var(--app-gutter));
+  height: auto;
+  border-radius: var(--app-radius);
+  box-shadow: 0 24px 48px -16px rgb(0 0 0 / 0.6);
+  animation: fade-in 300ms ease;
+}
+
+.details__fallback {
+  display: grid;
+  justify-items: center;
+  gap: 0.5rem;
+  color: rgb(255 255 255 / 0.7);
+
+  mat-icon {
+    width: 64px;
+    height: 64px;
+    font-size: 64px;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+.not-found {
+  display: grid;
+  justify-items: center;
+  gap: 0.5rem;
+  max-width: 32rem;
+  margin: 3rem auto;
+  padding: 2.5rem 1.5rem;
+  border-radius: var(--app-radius);
+  background: #fff;
+  color: var(--mat-sys-on-surface-variant);
+  text-align: center;
+
+  p {
+    margin: 0 0 1rem;
+  }
+}
+
+.not-found__icon {
+  width: 56px;
+  height: 56px;
+  font-size: 56px;
+  color: var(--mat-sys-primary-container);
+}
+
+.not-found__title {
+  margin: 0;
+  font: var(--mat-sys-title-large);
+  color: var(--mat-sys-on-surface);
+}
+
+.not-found__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: center;
+}
+
+@media (max-width: 599px) {
+  .details__bar {
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .details__remove {
+    --mat-button-filled-horizontal-padding: 12px;
+  }
+
+  .details__title {
+    order: 1;
+    flex-basis: 100%;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+  }
 }

@@ -25,6 +25,18 @@ src/app/
     photo-details/       "/photos/:id"  fullscreen photo view
 ```
 
+Key decisions:
+
+- **Favorites state** lives in a single signal-based store (`FavoritesStore`). Pages read its
+  signals and call `add` / `remove`; persistence to `localStorage` is an internal detail.
+- **Photo API** is simulated in `PhotoService` with a random 200-300 ms delay so the UI
+  behaves as it would against a real backend. Image URLs are seeded by the photo id, so a
+  favorite always shows the same picture.
+- **Infinite scrolling** is a reusable `InfiniteScrollDirective` wrapping `IntersectionObserver`.
+  It only reports that the end was reached; the page decides what to load.
+- **Photo card** is a shared presentational component with a heart button for favoriting and an
+  optional selectable body, used by both the stream and the favorites page.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.

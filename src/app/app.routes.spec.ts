@@ -1,9 +1,8 @@
-import { provideZonelessChangeDetection } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
-import { Router, provideRouter } from '@angular/router';
+import { Router } from '@angular/router';
 import { RouterTestingHarness } from '@angular/router/testing';
 import { beforeEach, describe, expect, it } from 'vitest';
-import { routes } from './app.routes';
+import { appConfig } from './app.config';
 import { FavoritesPageComponent } from './features/favorites/favorites-page.component';
 import { PhotoDetailsPageComponent } from './features/photo-details/photo-details-page.component';
 import { PhotosPageComponent } from './features/photos/photos-page.component';
@@ -12,9 +11,10 @@ describe('app routes', () => {
   let harness: RouterTestingHarness;
 
   beforeEach(async () => {
-    TestBed.configureTestingModule({
-      providers: [provideZonelessChangeDetection(), provideRouter(routes)],
-    });
+    localStorage.clear();
+    // Use the real application providers so route features such as component
+    // input binding are exercised exactly as in production.
+    TestBed.configureTestingModule({ providers: [appConfig.providers] });
     harness = await RouterTestingHarness.create();
   });
 
