@@ -1,7 +1,7 @@
-<section class="page">
-  <h1>Photos</h1>
+<section class="mx-auto max-w-6xl p-6">
+  <h1 class="mb-4 text-3xl font-bold">Photos</h1>
 
-  <div class="photo-grid">
+  <div class="grid grid-cols-[repeat(auto-fill,minmax(180px,1fr))] gap-4">
     @for (photo of photos(); track photo.id) {
       <app-photo-card
         [photo]="photo"
@@ -12,7 +12,7 @@
   </div>
 
   @if (loading()) {
-    <mat-progress-spinner class="spinner" mode="indeterminate" [diameter]="40" />
+    <mat-progress-spinner class="mx-auto my-8" mode="indeterminate" [diameter]="40" />
   } @else {
     <!-- Re-created after every batch so the observer fires again if it is still on screen. -->
     <div appInfiniteScroll (reached)="loadMore()"></div>

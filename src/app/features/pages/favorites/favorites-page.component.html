@@ -1,11 +1,11 @@
-<section class="page">
-  <h1>Favorites</h1>
+<section class="mx-auto max-w-6xl p-6">
+  <h1 class="mb-4 text-3xl font-bold">Favorites</h1>
 
   @if (favorites.photos().length === 0) {
-    <p>No favorites yet. <a routerLink="/">Browse photos</a> and tap the heart on the ones you like.</p>
+    <p>No favorites yet. <a routerLink="/" class="underline">Browse photos</a> and tap the heart on the ones you like.</p>
   }
 
-  <div class="photo-grid">
+  <div class="grid grid-cols-[repeat(auto-fill,minmax(180px,1fr))] gap-4">
     @for (photo of favorites.photos(); track photo.id) {
       <app-photo-card
         [photo]="photo"

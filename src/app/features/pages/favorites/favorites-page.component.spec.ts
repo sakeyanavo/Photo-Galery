@@ -36,10 +36,10 @@ describe('FavoritesPageComponent', () => {
     const host = fixture.nativeElement as HTMLElement;
     expect(host.querySelectorAll('app-photo-card')).toHaveLength(1);
 
-    host.querySelector<HTMLButtonElement>('.card__photo')!.click();
+    host.querySelector<HTMLButtonElement>('img')!.click();
     expect(navigate).toHaveBeenCalledWith(['/photos', 'a']);
 
-    host.querySelector<HTMLButtonElement>('.card__heart')!.click();
+    host.querySelector<HTMLButtonElement>('[aria-label]')!.click();
     await fixture.whenStable();
     expect(favorites.photos()).toEqual([]);
     expect(host.querySelectorAll('app-photo-card')).toHaveLength(0);

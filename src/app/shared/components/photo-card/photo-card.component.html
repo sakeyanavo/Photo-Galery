@@ -1,12 +1,13 @@
-<div class="card">
-  <button type="button" class="card__photo" (click)="selected.emit(photo())">
-    <img [src]="photo().url" alt="" loading="lazy" />
+<div
+  class="relative aspect-[2/3] overflow-hidden rounded-xl bg-(--mat-sys-surface-container) transition hover:-translate-y-1 hover:shadow-lg">
+  <button type="button" class="h-full w-full cursor-pointer" (click)="selected.emit(photo())">
+    <img [src]="photo().url" alt="" loading="lazy" class="h-full w-full object-cover" />
   </button>
 
   <button
     type="button"
-    class="card__heart"
-    [class.card__heart--active]="favorite()"
+    class="absolute top-2 right-2 grid size-10 cursor-pointer place-items-center rounded-full shadow-md transition hover:scale-110"
+    [class]="favorite() ? 'bg-(--mat-sys-primary) text-white' : 'bg-white text-(--mat-sys-primary)'"
     [attr.aria-label]="favorite() ? 'Remove from favorites' : 'Add to favorites'"
     (click)="favoriteToggled.emit(photo())">
     <mat-icon>{{ favorite() ? 'favorite' : 'favorite_border' }}</mat-icon>

@@ -6,7 +6,6 @@ import { Photo } from '../../models/photo.model';
   selector: 'app-photo-card',
   imports: [MatIconModule],
   templateUrl: './photo-card.component.html',
-  styleUrl: './photo-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PhotoCardComponent {

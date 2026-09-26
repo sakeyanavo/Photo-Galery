@@ -7,7 +7,6 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   selector: 'app-header',
   imports: [MatToolbarModule, MatIconModule, RouterLink, RouterLinkActive],
   templateUrl: './header.component.html',
-  styleUrl: './header.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeaderComponent {}

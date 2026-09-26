@@ -1,15 +1,22 @@
-<mat-toolbar class="header">
-  <a class="header__brand" routerLink="/">
+<mat-toolbar class="sticky top-0 z-10 border-b-3 border-(--mat-sys-primary) bg-white!">
+  <a routerLink="/" class="flex items-center gap-2 font-bold text-(--mat-sys-primary)">
     <mat-icon>photo_camera</mat-icon>
     Photo Library
   </a>
 
-  <nav class="header__nav">
-    <a class="header__link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+  <nav class="ml-auto flex gap-2">
+    <a
+      routerLink="/"
+      routerLinkActive="bg-(--mat-sys-primary) text-white"
+      [routerLinkActiveOptions]="{ exact: true }"
+      class="flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium hover:bg-(--mat-sys-primary-container)">
       <mat-icon>photo_library</mat-icon>
       Photos
     </a>
-    <a class="header__link" routerLink="/favorites" routerLinkActive="active">
+    <a
+      routerLink="/favorites"
+      routerLinkActive="bg-(--mat-sys-primary) text-white"
+      class="flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium hover:bg-(--mat-sys-primary-container)">
       <mat-icon>favorite</mat-icon>
       Favorites
     </a>

@@ -35,7 +35,7 @@ describe('PhotosPageComponent', () => {
 
   it('toggles a favorite from the heart button', async () => {
     const favorites = TestBed.inject(FavoritesService);
-    const heart = (fixture.nativeElement as HTMLElement).querySelector<HTMLButtonElement>('.card__heart')!;
+    const heart = (fixture.nativeElement as HTMLElement).querySelector<HTMLButtonElement>('[aria-label]')!;
 
     heart.click();
     await fixture.whenStable();
