@@ -1,100 +1,33 @@
 @use '@angular/material' as mat;
-@use './styles/theme-colors' as brand;
 
 html {
   color-scheme: light;
-
   @include mat.theme((
-    color: (
-      primary: brand.$primary-palette,
-      tertiary: brand.$tertiary-palette,
-    ),
-    typography: 'Plus Jakarta Sans',
+    color: mat.$orange-palette,
+    typography: Roboto,
     density: 0,
   ));
-
-  // Material picks a darker tone for "primary"; use the creamy brand peach instead.
-  @include mat.theme-overrides((
-    primary: #f4835f,
-    on-primary: #fff,
-    primary-container: #ffe9dc,
-  ));
-
-  --app-radius: 16px;
-  --app-gutter: clamp(1rem, 4vw, 2.5rem);
-}
-
-* {
-  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  min-height: 100dvh;
-  background: #fffaf2;
+  background: var(--mat-sys-surface);
   color: var(--mat-sys-on-surface);
   font: var(--mat-sys-body-large);
 }
 
-img {
-  display: block;
-  max-width: 100%;
-}
-
 .page {
-  max-width: 1440px;
+  max-width: 1200px;
   margin: 0 auto;
-  padding: var(--app-gutter);
+  padding: 1.5rem;
 }
 
-.page__title {
-  margin: 0 0 0.25rem;
-  font: var(--mat-sys-headline-large);
-  font-weight: 700;
-  color: var(--mat-sys-primary);
-}
-
-.page__hint {
-  margin: 0;
-  color: var(--mat-sys-on-surface-variant);
-}
-
-.is-filled {
-  font-variation-settings: 'FILL' 1;
+.spinner {
+  margin: 2rem auto;
 }
 
 .photo-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 1rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-
-  @media (min-width: 900px) {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1.25rem;
-  }
-}
-
-.status {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.75rem;
-  min-height: 6rem;
-  margin: 0;
-  padding: 1.5rem;
-  color: var(--mat-sys-on-surface-variant);
-  text-align: center;
-
-  p {
-    margin: 0;
-  }
-}
-
-.status--error {
-  border-radius: var(--app-radius);
-  background: var(--mat-sys-error-container);
-  color: var(--mat-sys-on-error-container);
 }

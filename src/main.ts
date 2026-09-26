@@ -1,5 +1,9 @@
+import { provideZonelessChangeDetection } from '@angular/core';
 import { bootstrapApplication } from '@angular/platform-browser';
+import { provideRouter, withComponentInputBinding } from '@angular/router';
 import { AppComponent } from './app/app.component';
-import { appConfig } from './app/app.config';
+import { routes } from './app/app.routes';
 
-bootstrapApplication(AppComponent, appConfig).catch(err => console.error(err));
+bootstrapApplication(AppComponent, {
+  providers: [provideZonelessChangeDetection(), provideRouter(routes, withComponentInputBinding())],
+}).catch(err => console.error(err));

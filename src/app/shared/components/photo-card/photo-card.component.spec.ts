@@ -1,103 +1,46 @@
-import { Component, signal } from '@angular/core';
+import { provideZonelessChangeDetection } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { beforeEach, describe, expect, it } from 'vitest';
 import { Photo } from '../../models/photo.model';
 import { PhotoCardComponent } from './photo-card.component';
 
-const photo: Photo = { id: 'p1', url: 'https://example.com/p1.jpg', width: 400, height: 600, alt: 'A photo' };
-
-@Component({
-  imports: [PhotoCardComponent],
-  template: `
-    <app-photo-card
-      [photo]="photo()"
-      [favorite]="favorite()"
-      [selectable]="selectable()"
-      actionLabel="Open photo"
-      (selected)="selected = $event"
-      (favoriteToggled)="toggled = $event" />
-  `,
-})
-class HostComponent {
-  readonly photo = signal(photo);
-  readonly favorite = signal(false);
-  readonly selectable = signal(false);
-  selected: Photo | null = null;
-  toggled: Photo | null = null;
-}
+const photo: Photo = { id: 'a', url: 'https://example.com/a.jpg' };
 
 describe('PhotoCardComponent', () => {
-  let fixture: ComponentFixture<HostComponent>;
-  let host: HostComponent;
-  let element: HTMLElement;
-
-  const img = () => element.querySelector<HTMLImageElement>('img');
-  const favButton = () => element.querySelector<HTMLButtonElement>('.card__fav');
-  const bodyButton = () => element.querySelector<HTMLButtonElement>('button.card__body');
+  let fixture: ComponentFixture<PhotoCardComponent>;
 
   beforeEach(async () => {
-    await TestBed.configureTestingModule({ imports: [HostComponent] }).compileComponents();
-    fixture = TestBed.createComponent(HostComponent);
-    host = fixture.componentInstance;
-    element = fixture.nativeElement as HTMLElement;
+    await TestBed.configureTestingModule({
+      imports: [PhotoCardComponent],
+      providers: [provideZonelessChangeDetection()],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(PhotoCardComponent);
+    fixture.componentRef.setInput('photo', photo);
     await fixture.whenStable();
   });
 
-  it('renders the photo image with alt text and intrinsic size', () => {
-    expect(img()?.getAttribute('src')).toBe(photo.url);
-    expect(img()?.getAttribute('alt')).toBe(photo.alt);
-    expect(img()?.getAttribute('width')).toBe('400');
-    expect(img()?.getAttribute('height')).toBe('600');
+  it('shows the photo and emits when it is clicked', () => {
+    const selected: Photo[] = [];
+    fixture.componentInstance.selected.subscribe(p => selected.push(p));
+    const host = fixture.nativeElement as HTMLElement;
+
+    expect(host.querySelector('img')?.src).toBe(photo.url);
+    host.querySelector<HTMLButtonElement>('.card__photo')!.click();
+    expect(selected).toEqual([photo]);
   });
 
-  it('emits favoriteToggled only from the heart button', () => {
-    favButton()?.click();
+  it('shows the favorite state and emits when the heart is clicked', async () => {
+    const toggled: Photo[] = [];
+    fixture.componentInstance.favoriteToggled.subscribe(p => toggled.push(p));
+    const heart = () => (fixture.nativeElement as HTMLElement).querySelector<HTMLButtonElement>('.card__heart')!;
 
-    expect(host.toggled).toEqual(photo);
-    expect(host.selected).toBeNull();
-  });
-
-  it('labels the heart button with the action it will perform', async () => {
-    expect(favButton()?.getAttribute('aria-label')).toBe('Add to favorites: A photo');
-    expect(favButton()?.getAttribute('aria-pressed')).toBe('false');
-
-    host.favorite.set(true);
+    expect(heart().textContent).toContain('favorite_border');
+    fixture.componentRef.setInput('favorite', true);
     await fixture.whenStable();
+    expect(heart().textContent?.trim()).toBe('favorite');
 
-    expect(favButton()?.getAttribute('aria-label')).toBe('Remove from favorites: A photo');
-    expect(favButton()?.getAttribute('aria-pressed')).toBe('true');
-    expect(favButton()?.classList).toContain('card__fav--active');
-  });
-
-  it('does not make the photo clickable unless selectable', () => {
-    expect(bodyButton()).toBeNull();
-  });
-
-  it('emits selected when a selectable photo is clicked', async () => {
-    host.selectable.set(true);
-    await fixture.whenStable();
-
-    expect(bodyButton()?.getAttribute('aria-label')).toBe('Open photo: A photo');
-    bodyButton()?.click();
-
-    expect(host.selected).toEqual(photo);
-    expect(host.toggled).toBeNull();
-  });
-
-  it('shows a placeholder until the image has loaded', async () => {
-    expect(element.querySelector('.card__skeleton')).not.toBeNull();
-
-    img()?.dispatchEvent(new Event('load'));
-    await fixture.whenStable();
-
-    expect(element.querySelector('.card__skeleton')).toBeNull();
-  });
-
-  it('falls back to an error state when the image fails to load', async () => {
-    img()?.dispatchEvent(new Event('error'));
-    await fixture.whenStable();
-
-    expect(element.querySelector('.card__fallback')).not.toBeNull();
-    expect(img()).toBeNull();
+    heart().click();
+    expect(toggled).toEqual([photo]);
   });
 });

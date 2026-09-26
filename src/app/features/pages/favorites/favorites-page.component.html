@@ -1,0 +1,17 @@
+<section class="page">
+  <h1>Favorites</h1>
+
+  @if (favorites.photos().length === 0) {
+    <p>No favorites yet. <a routerLink="/">Browse photos</a> and tap the heart on the ones you like.</p>
+  }
+
+  <div class="photo-grid">
+    @for (photo of favorites.photos(); track photo.id) {
+      <app-photo-card
+        [photo]="photo"
+        [favorite]="true"
+        (selected)="open($event)"
+        (favoriteToggled)="favorites.remove($event.id)" />
+    }
+  </div>
+</section>

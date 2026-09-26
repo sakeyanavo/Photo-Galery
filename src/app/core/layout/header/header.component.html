@@ -1,21 +1,17 @@
 <mat-toolbar class="header">
-  <a class="header__brand" routerLink="/" aria-label="Photo Library home">
-    <mat-icon class="is-filled" aria-hidden="true">photo_camera</mat-icon>
-    <span class="header__brand-text">Photo Library</span>
+  <a class="header__brand" routerLink="/">
+    <mat-icon>photo_camera</mat-icon>
+    Photo Library
   </a>
 
-  <nav class="header__nav" aria-label="Main">
-    @for (item of navItems; track item.path) {
-      <a
-        class="header__link"
-        [routerLink]="item.path"
-        [attr.aria-label]="item.label"
-        routerLinkActive="active"
-        [routerLinkActiveOptions]="{ exact: item.exact }"
-        ariaCurrentWhenActive="page">
-        <mat-icon aria-hidden="true">{{ item.icon }}</mat-icon>
-        <span class="header__link-label">{{ item.label }}</span>
-      </a>
-    }
+  <nav class="header__nav">
+    <a class="header__link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
+      <mat-icon>photo_library</mat-icon>
+      Photos
+    </a>
+    <a class="header__link" routerLink="/favorites" routerLinkActive="active">
+      <mat-icon>favorite</mat-icon>
+      Favorites
+    </a>
   </nav>
 </mat-toolbar>

@@ -1,67 +1,32 @@
-:host {
-  display: block;
-}
-
 .card {
   position: relative;
   aspect-ratio: 2 / 3;
   overflow: hidden;
-  border-radius: var(--app-radius);
+  border-radius: 12px;
   background: var(--mat-sys-surface-container);
   transition: transform 200ms ease, box-shadow 200ms ease;
 
-  &--selectable:hover,
-  &:has(:focus-visible) {
+  &:hover {
     transform: translateY(-3px);
     box-shadow: 0 12px 24px -12px rgb(0 0 0 / 0.35);
   }
 }
 
-.card__body {
-  display: block;
+.card__photo {
   width: 100%;
   height: 100%;
   padding: 0;
   border: 0;
-  background: none;
+  cursor: pointer;
 
-  .card--selectable & {
-    cursor: pointer;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
 
-.card__img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transition: opacity 300ms ease;
-
-  .card--loaded & {
-    opacity: 1;
-  }
-}
-
-.card__skeleton {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(100deg, transparent 40%, rgb(255 255 255 / 0.6) 50%, transparent 60%)
-    var(--mat-sys-surface-container-high);
-  background-size: 300% 100%;
-  animation: shimmer 1.4s infinite;
-}
-
-.card__fallback {
-  display: grid;
-  place-content: center;
-  justify-items: center;
-  gap: 0.5rem;
-  height: 100%;
-  color: var(--mat-sys-on-surface-variant);
-  font: var(--mat-sys-label-medium);
-}
-
-.card__fav {
+.card__heart {
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
@@ -72,11 +37,11 @@
   padding: 0;
   border: 0;
   border-radius: 50%;
-  background: rgb(255 255 255 / 0.9);
+  background: white;
   color: var(--mat-sys-primary);
   box-shadow: 0 4px 12px rgb(0 0 0 / 0.2);
   cursor: pointer;
-  transition: transform 150ms ease, background-color 200ms ease, color 200ms ease;
+  transition: transform 150ms ease;
 
   &:hover {
     transform: scale(1.1);
@@ -84,21 +49,6 @@
 
   &--active {
     background: var(--mat-sys-primary);
-    color: var(--mat-sys-on-primary);
-  }
-}
-
-.card__body:focus-visible,
-.card__fav:focus-visible {
-  outline: 3px solid var(--mat-sys-primary);
-  outline-offset: -3px;
-}
-
-@keyframes shimmer {
-  from {
-    background-position: 100% 0;
-  }
-  to {
-    background-position: 0 0;
+    color: white;
   }
 }

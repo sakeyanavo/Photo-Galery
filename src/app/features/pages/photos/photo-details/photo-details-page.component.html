@@ -1,0 +1,20 @@
+@if (photo(); as photo) {
+  <section class="details">
+    <div class="details__bar">
+      <a mat-button routerLink="/favorites">
+        <mat-icon>arrow_back</mat-icon>
+        Favorites
+      </a>
+      <button mat-flat-button type="button" (click)="remove()">
+        <mat-icon>favorite</mat-icon>
+        Remove from favorites
+      </button>
+    </div>
+    <img class="details__img" [src]="photo.url" alt="" />
+  </section>
+} @else {
+  <section class="page">
+    <h1>Photo not found</h1>
+    <p>This photo is not in your favorites. <a routerLink="/favorites">Go to favorites</a></p>
+  </section>
+}
